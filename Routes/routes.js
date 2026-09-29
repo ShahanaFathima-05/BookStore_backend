@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require("../Controllers/useController");
 const router = new express.Router();
+const jwtMiddleware=require('../Middlewares/jwtMiddleware')
 
 //registration
 router.post("/register", userController.useRegister)
@@ -9,6 +10,6 @@ router.post("/register", userController.useRegister)
 router.post("/login", userController.userLogin)
 
 //profile update
-router.get("/update", userController.userUpadate)
+router.get("/update",jwtMiddleware, userController.userUpadate)
 
 module.exports = router

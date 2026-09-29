@@ -1,9 +1,14 @@
+// DNS fix
+require('dns').setDefaultResultOrder('ipv4first')
+
+
 //loads .env file contents into process.env by default
 require('dotenv').config()
 const express=require('express')
 const cors=require('cors')
 const router=require('./Routes/routes')
 require('./dbConnect/db')
+
 
 
 //creating server instance
@@ -15,7 +20,6 @@ server.use(cors())
 
 //enabling json middleware
 server.use(express.json())
-
 
 //cofiguring router
 server.use(router)
