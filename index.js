@@ -4,6 +4,7 @@ require('dns').setDefaultResultOrder('ipv4first')
 
 //loads .env file contents into process.env by default
 require('dotenv').config()
+
 const express=require('express')
 const cors=require('cors')
 const router=require('./Routes/routes')
@@ -24,6 +25,9 @@ server.use(express.json())
 //cofiguring router
 server.use(router)
 
+//configuring static middleware for sering static files to client side 
+server.use('/uploads',express.static('uploads'))
+
 
 //setup port number
 const port=process.env.PORT
@@ -32,6 +36,17 @@ const port=process.env.PORT
 //start server to listen client requests to thst port/available server in internet
 server.listen(port,()=>{
     console.log(`Server Started at ${port} & waiting for client requests`)
+})
+
+//global error handling middleware
+server.use((err, req, res, next) => {
+
+    console.log(err)
+
+    res.status(500).json({
+        message: err.message
+    })
+
 })
 
 //Resolving API(htttp://localhost:3000) using express
