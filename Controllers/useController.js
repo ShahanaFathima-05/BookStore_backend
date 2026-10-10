@@ -80,8 +80,9 @@ exports.userUpadate=async (req,res)=>{
     // console.log(req.payload)
     const {email,password,bio,username,picture}=req.body
     const id=req.payload?.userid
+    const useremail=req.payload?.userMail
     const pic=req.file?req.file.filename:picture
     const encyrptpass=await bcrypt.hash(password,10)
-    const updateuser=await users.findByIdAndUpdate({_id:id},{username,email,bio,password:encyrptpass,picture:pic},{new:true})
+    const updateuser=await users.findByIdAndUpdate({_id:id},{username,email:useremail,bio,password:encyrptpass,picture:pic},{new:true})
     res.status(200).json(updateuser)
 }
