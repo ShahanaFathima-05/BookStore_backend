@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const { array } = require('../Middlewares/multerMiddlware')
+// const { array } = require('../Middlewares/multerMiddlware')
 
 const bookShcema=new mongoose.Schema({
     title:{
@@ -22,7 +22,7 @@ const bookShcema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    discoutPrice:{
+    discountPrice:{
         type:Number,
         required:true
     },
@@ -60,7 +60,7 @@ const bookShcema=new mongoose.Schema({
     },
     buyerMail:{
         type:String,
-        required:true
+        default:""
     }
 })
 

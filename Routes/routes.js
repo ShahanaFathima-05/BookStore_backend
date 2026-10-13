@@ -20,4 +20,8 @@ router.put("/update",jwtMiddleware,multerMiddleware.single('picture'), userContr
 //add-book
 router.post('/addbook',jwtMiddleware,multerMiddleware.array('uploadedImages'),bookController.addBook)
 
+router.get('/latestbooks',bookController.latestBooks)
+
+router.get('/booklist',jwtMiddleware,bookController.booklist)
+
 module.exports = router
