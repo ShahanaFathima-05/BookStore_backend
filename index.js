@@ -40,9 +40,7 @@ server.listen(port,()=>{
 
 //global error handling middleware
 server.use((err, req, res, next) => {
-
     console.log(err)
-
     res.status(500).json({
         message: err.message
     })
