@@ -33,6 +33,8 @@ router.get('/purchasedbooks',jwtMiddleware,bookController.purchasedBookList)
 
 router.get('/bookdetail/:bid',jwtMiddleware,bookController.getBookById)
 
+router.post('/generate-summary',jwtMiddleware,bookController.generateBookSummary)
+
 router.get('/payment/:bid',bookController.bookPayment)
 
 router.get('/admin/allbooks',adminMiddleware,bookController.getAdminAllbooks)
