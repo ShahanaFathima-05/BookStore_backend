@@ -134,9 +134,9 @@ exports.bookPayment = async (req, res) => {
     const buyer = await users.findById(userId)
     // const buyerMail = buyer.email
     const bookDetail = await books.findById(bid)
-    // bookDetail.status = "sold"
-    // bookDetail.buyerMail = buyerMail
-    // await bookDetail.save()
+    bookDetail.status = "sold"
+    bookDetail.buyerMail = buyerMail
+    await bookDetail.save()
     //create stripe checkout session
     const line_items = [{
         price_data: {
@@ -155,8 +155,10 @@ exports.bookPayment = async (req, res) => {
     }]
 
     const session = await stripe.checkout.sessions.create({
-        success_url: "http://localhost:5173/success",
-        cancel_url: "http://localhost:5173/failure",
+        // success_url: "http://localhost:5173/success",
+        // cancel_url: "http://localhost:5173/failure",
+        success_url: "https://book-store-one-steel.vercel.app/success",
+        cancel_url: "https://book-store-one-steel.vercel.app/failure",
         line_items,
         mode: 'payment',
         allowed_payment_method_types: ['card']
